@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2_類數式組件</title>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <script type="text/javascript" src ="../js/react.development.js"></script>
+    <script type="text/javascript" src ="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src ="../js/babel.min.js"></script>
+
+    <script type ="text/babel">
+        //1.創建類式組件
+        //如果要將類別當組件使用需要繼承另一個類
+        class Mycomponent extends React.Component{
+            render(){
+                //render是放在哪裡的?-Mycomponent的原行對象上，提供實例使用。
+                //render中的this是誰?-Mycomponent的實例對象 = Mycomponent的組件實例對象
+                console.log('render中的this:',this);
+                return <h2>我是用類定義的組件，適用於【複雜組建】的定義。</h2>
+            }
+        }
+        //2.渲染組件到頁面
+        ReactDOM.render(<Mycomponent/>,document.getElementById('test'))
+        /*
+            執行了ReactDOM.render(<MyComponent/>......之後，發生了什麼?
+                1.react解析組件標籤，找到了Mycomponent的組件。
+                2.發現組件是使用函數定義的，隨後new出來該類的實例，並通過該實例調用到原型上的render方法。
+                3.將render返回的虛擬DOM轉化為真實DOM，隨後呈現在頁面中。
+        */
+    </script>
+</body>
+</html>
