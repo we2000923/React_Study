@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1_字串形式的ref </title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            //展示左側輸入框的數據  
+            showData = () => {
+                const { input1 } = this
+                alert(input1.value)
+            }
+            //展示右側輸入框的數據   
+            showData2 = () => {
+                const { input2 } = this
+                alert(input2.value)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input ref={c=> this.input1=c }type="text" placeholder="點擊按鈕提示數據" />&nbsp;
+                        <button onClick={this.showData}>點我提示左側數據</button>&nbsp;
+                        <input onBlur={this.showData2} ref={c=> this.input2=c }type="text" placeholder="失去焦點提示數據" />&nbsp;
+                    </div>
+                )
+            }
+        }
+        //渲染組件到頁面上
+        ReactDOM.render(<Demo a='1' b='2' />, document.getElementById('test'))
+    </script>
+
+
+</body>
+
+</html>
