@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4_createref </title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            /*
+                React.createRef調用後可以調用後可以返回一個容器，該容器可以儲存ref所標所標示的節點,該容器是專人專用的
+            */
+
+            myRef = React.createRef();
+            myRef2 = React.createRef();
+            //展示左側輸入框的數據  
+            showData = () => {
+                alert(this.myRef.current.value);
+            }
+            //展示右側輸入框的數據   
+            showData2 = () => {
+                alert(this.myRef2.current.value);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input ref= {this.myRef} type="text" placeholder="點擊按鈕提示數據" />&nbsp;
+                        <button onClick={this.showData}>點我提示左側數據</button>&nbsp;
+                        <input onBlur={this.showData2} ref= {this.myRef2} type="text" placeholder="失去焦點 提示數據" />&nbsp;
+                    </div>
+                )
+            }
+        }
+        //渲染組件到頁面上
+        ReactDOM.render(<Demo a='1' b='2' />, document.getElementById('test'))
+    </script>
+
+
+</body>
+
+</html>
